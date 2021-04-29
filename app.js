@@ -4,6 +4,7 @@ const inputAmount = document.querySelector('#input-amount')
 const btnClear = document.querySelector('#btn-clear')
 const listExpenses = document.querySelector('#list-expenses')
 const txtTotalExpenses = document.querySelector('#txt-total-expenses')
+const alertCtrl = document.querySelector('ion-alert-controller')
 
 let totalExpenses = 0
 
@@ -24,6 +25,15 @@ btnAdd.addEventListener('click', () => {
     const amount = inputAmount.value
 
     if (reason.trim().length <= 0 || amount <= 0 || amount.trim().length <= 0) {
+        alertCtrl
+            .create({
+                message: 'Please enter valid reason and amount.',
+                header: 'Invalid inputs',
+                buttons: ['Okay']
+            })
+            .then(alertElement => {
+                alertElement.present()
+            })
         return
     }
 
