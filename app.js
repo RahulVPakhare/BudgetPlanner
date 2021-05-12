@@ -24,11 +24,24 @@ btnAdd.addEventListener('click', () => {
     const reason = inputReason.value
     const amount = inputAmount.value
 
-    if (reason.trim().length <= 0 || amount <= 0 || amount.trim().length <= 0) {
+    if (reason.trim().length <= 0 || amount.trim().length <= 0) {
         alertCtrl
             .create({
                 message: 'Please enter valid reason and amount.',
                 header: 'Invalid inputs',
+                buttons: ['Okay']
+            })
+            .then(alertElement => {
+                alertElement.present()
+            })
+        return
+    }
+
+    if (amount <= 0) {
+        alertCtrl
+            .create({
+                message: 'Please enter amount greater than zero.',
+                header: 'Invalid amount',
                 buttons: ['Okay']
             })
             .then(alertElement => {
